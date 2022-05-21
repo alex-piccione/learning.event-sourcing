@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<AssemblyName>LES.Backend</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="config.fs" />
+    <Compile Include="Events\events.fs" />
+    <Compile Include="Events\currency.events.fs" />
+    <Compile Include="EventRepository.fs" />
+    <Compile Include="Comamnds\currency.commands.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.15.1" />
+  </ItemGroup>
+
+</Project>

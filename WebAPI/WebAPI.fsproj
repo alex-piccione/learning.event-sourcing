@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.fsproj" />
     <ProjectReference Include="..\Shared\Shared.fsproj" />
   </ItemGroup>
 
