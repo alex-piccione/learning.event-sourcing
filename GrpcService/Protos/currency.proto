@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+package currency;
+
+service CurrencyService {
+	rpc List (ListRequest) returns (ListResponse);
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+	repeated Currency currencies = 1;
+}
+
+message Currency {
+	string code = 1;
+	string name = 2;
+}

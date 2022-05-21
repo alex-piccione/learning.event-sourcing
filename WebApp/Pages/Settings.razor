@@ -1,0 +1,65 @@
+﻿@page "/settings"
+@inject HttpClient Http
+
+<PageTitle>Settings</PageTitle>
+
+<h1>Settings</h1>
+
+<p>This page allows to edit Currencies and Companies.</p>
+
+@if (currencies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in currencies)
+            {
+                <tr>
+                    <td>@currency.Code</td>
+                    <td>@currency.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Currency[]? currencies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currencies = await Http.GetFromJsonAsync<Currency[]>("sample-data/weather.json");
+    }
+
+    public class WeatherForecast
+    {
+        public DateTime Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public string? Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    /*public class Currency
+    {
+        public string Code { get; set; }
+        public string Name { get; set; }
+
+        public Currency(string code, string name)
+        {
+            Code = code;
+            Name = name;
+        }
+    }*/
+}
