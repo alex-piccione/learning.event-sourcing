@@ -32,9 +32,11 @@ type CurrencyEvent__ =
 | Updated of CurrencyUpdated
 
 type CurrencyAggregate with
+    static member createFromEvent (event:CurrencyCreated): CurrencyAggregate = 
+        CurrencyAggregate.create event.Code event.Name event.Date
     member this.applyEvent event: CurrencyAggregate =
-        match (event:CurrencyEvent) with
-        | :? CurrencyCreated -> this 
-        | :? CurrencyDeleted -> { this with IsDeleted = true }
-        | :? CurrencyUpdated as ev -> { this with Name = ev.NewName }
+        match box (event:CurrencyEvent) with
+        | :? CurrencyDeleted -> this.delete ()
+        | :? CurrencyUpdated as ev -> this.changeName ev.NewName
         | _ -> failwith "wrong event for aggregate"
+        

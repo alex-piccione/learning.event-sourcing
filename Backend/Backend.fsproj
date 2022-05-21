@@ -9,11 +9,11 @@
   <ItemGroup>
     <Compile Include="config.fs" />
     <Compile Include="Aggregates\currency.aggregate.fs" />
-    <Compile Include="Storers\common.storer.fs" />
-    <Compile Include="Storers\currency.storer.fs" />
     <Compile Include="Events\events.fs" />
-    <Compile Include="Events\EventStorer.fs" />
     <Compile Include="Events\currency.events.fs" />
+    <Compile Include="Storers\common.storer.fs" />
+    <Compile Include="Storers\EventStorer.fs" />
+    <Compile Include="Storers\currency.storer.fs" />
     <Compile Include="Commands\currency.commands.fs" />
   </ItemGroup>
 
