@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="config.fs" />
+    <Compile Include="Aggregates\currency.aggregate.fs" />
     <Compile Include="Storers\common.storer.fs" />
     <Compile Include="Storers\currency.storer.fs" />
     <Compile Include="Events\events.fs" />
