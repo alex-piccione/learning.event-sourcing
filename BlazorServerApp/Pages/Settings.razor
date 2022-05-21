@@ -1,0 +1,43 @@
+﻿@using BlazorServerApp.Data
+@page "/settings"
+
+@inject SettingsService SettingsService
+
+<PageTitle>Settingst</PageTitle>
+<h1>Settings</h1>
+
+<p>This page allows to change settings.</p>
+
+@if (currencies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in currencies)
+            {
+                <tr>
+                    <td>@currency.Code</td>
+                    <td>@currency.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Currency[]? currencies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currencies = await SettingsService.ListCurrencies();
+    }
+}
