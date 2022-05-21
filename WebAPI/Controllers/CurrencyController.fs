@@ -21,8 +21,7 @@ type CurrencyController (logger:ILogger<CurrencyController>) =
         currencies
 
     [<HttpPost>]
-    member _.Create( [<FromBody>]data:obj) =
-        
-        let command = Create({ Code = "" ;  Name = "" })
+    member _.Create([<FromBody>]data:CreateCurrencyCommand) =        
+        let command = Create(data)
         currencyCommands.handleCommand(command)
         ()

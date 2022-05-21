@@ -31,13 +31,32 @@ else
             }
         </tbody>
     </table>
+
+   <div>
+       <label >Code</label>
+       <input @bind="CreateCode" />
+   </div>
+<div class="input-group">
+    <label>Name</label>
+    <input  @bind="CreateName" />
+</div>
+
+    <button class="btn" @onclick=@OnCreateClick>Create</button>
 }
 
 @code {
     private Currency[]? currencies;
 
+    public string CreateCode { get; set; } = "";
+    public string CreateName { get; set; } = "";
+
     protected override async Task OnInitializedAsync()
     {
         currencies = await SettingsService.ListCurrencies();
+    }
+
+    protected async void OnCreateClick(MouseEventArgs mouseEventArgs)
+    {
+        await SettingsService.Create(CreateCode, CreateName);
     }
 }

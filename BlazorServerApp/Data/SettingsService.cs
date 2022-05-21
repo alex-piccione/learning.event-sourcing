@@ -2,7 +2,7 @@ using LES.Shared.Entities;
 
 namespace BlazorServerApp.Data
 {
-    public class SettingsService: BaseService
+    public class SettingsService : BaseService
     {
         public SettingsService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
@@ -46,6 +46,12 @@ namespace BlazorServerApp.Data
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             }).ToArray());*/
+        }
+
+        public async Task Create(string code, string name)
+        {
+            using var client = CreateClient();
+            await client.PostAsJsonAsync("currency", new { Code = code, Name = name }); ;
         }
     }
 }
