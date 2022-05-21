@@ -35,7 +35,9 @@
 @code {
     private bool collapseNavMenu = true;
 
+    #nullable enable
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    #nullable restore
 
     private void ToggleNavMenu()
     {
