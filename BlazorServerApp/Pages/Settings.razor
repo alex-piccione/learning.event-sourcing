@@ -32,16 +32,16 @@ else
         </tbody>
     </table>
 
-   <div>
-       <label >Code</label>
-       <input @bind="CreateCode" />
-   </div>
-<div class="input-group">
-    <label>Name</label>
-    <input  @bind="CreateName" />
-</div>
+    <div class="input-group">
+        <label class="form-label">Code</label>
+        <input class="form-control"  @bind="CreateCode" />
+    </div>
+    <div class="input-group fo">
+        <label class="form-label col-form-label-sm">Name</label>
+        <input class="form-control form-control-sm"  @bind="CreateName" />
+    </div>
 
-    <button class="btn" @onclick=@OnCreateClick>Create</button>
+    <button class="btn btn-primary" @onclick=@OnCreateClick>Create</button>
 }
 
 @code {
@@ -58,5 +58,6 @@ else
     protected async void OnCreateClick(MouseEventArgs mouseEventArgs)
     {
         await SettingsService.Create(CreateCode, CreateName);
+
     }
 }

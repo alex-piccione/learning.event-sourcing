@@ -1,4 +1,4 @@
-﻿module EventRepository
+﻿module EventStorer
 
 open MongoDB.Driver
 open MongoDB.Bson.Serialization
@@ -9,12 +9,12 @@ let databaseSettings = new MongoDatabaseSettings() // default settings
 let database = client.GetDatabase(config.database, databaseSettings)
 let collection = database.GetCollection<BaseEvent>("Events");
 
-//if not(BsonClassMap.IsClassMapRegistered(typeof<'T>)) then
-let map = BsonClassMap<BaseEvent>()
-map.AutoMap()
-map.MapIdMember( (fun x -> x.Id)) |> ignore
-//map.SetIgnoreExtraElements true
-BsonClassMap.RegisterClassMap(map)
+if not(BsonClassMap.IsClassMapRegistered(typeof<BaseEvent>)) then
+    let map = BsonClassMap<BaseEvent>()
+    map.AutoMap()
+    map.MapIdMember( (fun x -> x.Id)) |> ignore
+    //map.SetIgnoreExtraElements true
+    BsonClassMap.RegisterClassMap(map)
 
-let storeEvent event = collection.InsertOne(event)
-
+let storeEvent (event:BaseEvent) =
+    collection.InsertOne(event)

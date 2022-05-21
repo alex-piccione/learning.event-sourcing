@@ -2,16 +2,15 @@
 
 open events
 
-type CreateCurrency = { Code:string; Name:string }
-type DeleteCurrency = { Code:string }
-type UpdateCurrency = { Code:string; Name:string }
+//type CurrencyCreated = { Code:string; Name:string }
+//type CurrencyDeleted = { Code:string }
+//type CurrencyUpdated = { Code:string; Name:string }
 
+type CurrencyCreated (Code:string, Name:string) as me =
+    inherit BaseEvent(nameof me)
 
-type CreateCurrencyEvent (Code:string, Name:string) =
-    inherit BaseEvent(nameOfEvent CreateCurrencyEvent)
+type CurrencyDeleted (Code:string) =
+    inherit BaseEvent(nameOfEvent CurrencyDeleted)
 
-type DeleteCurrencyEvent (Code:string) =
-    inherit BaseEvent("DeleteCurrency")
-
-type UpdateCurrencyEvent (Code:string, Name:string) =
-    inherit BaseEvent("UpdateCurrency")
+type CurrencyUpdated (Code:string, Name:string) =
+    inherit BaseEvent("CurrencyUpdated")
