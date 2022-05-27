@@ -1,14 +1,14 @@
 ﻿@using BlazorServerApp.Data
-@page "/settings"
+@page "/events"
 
-@inject SettingsService SettingsService
+@inject EventsService EventsService
 
-<PageTitle>Settings</PageTitle>
-<h1>Settings</h1>
+<PageTitle>Events</PageTitle>
+<h1>Events</h1>
 
 <p>This page allows to change settings.</p>
 
-@if (currencies == null)
+@if (events == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -22,7 +22,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var currency in currencies)
+            @foreach (var currency in events)
             {
                 <tr>
                     <td>@currency.Code</td>

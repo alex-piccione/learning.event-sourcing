@@ -4,7 +4,7 @@ open System
 
 let nameOfEvent eventType = eventType.GetType().Name.Replace("Event", "")
 
-type BaseEventData = { When:DateTime }
+//type BaseEventData = { When:DateTime }
 
 type BaseEvent (id:string, date:DateTime, eventType:string) as me = 
     new (eventType:string) = BaseEvent(Guid.NewGuid().ToString(), DateTime.UtcNow, eventType)
